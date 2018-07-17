@@ -1,86 +1,110 @@
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=5,IE=9" ><![endif]-->
+<!DOCTYPE html>
 <html>
 <head>
-	<title>mxGraph 3.9.8</title>
-    <link rel="stylesheet" href="docs/css/manual-styles.css">
-    <link rel="stylesheet" href="docs/css/manual-colors.css">
+    <title>Grapheditor</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="styles/grapheditor.css">
+	<script type="text/javascript">
+		// Parses URL parameters. Supported parameters are:
+		// - lang=xy: Specifies the language of the user interface.
+		// - touch=1: Enables a touch-style user interface.
+		// - storage=local: Enables HTML5 local storage.
+		// - chrome=0: Chromeless mode.
+		var urlParams = (function(url)
+		{
+			var result = new Object();
+			var idx = url.lastIndexOf('?');
+	
+			if (idx > 0)
+			{
+				var params = url.substring(idx + 1).split('&');
+				
+				for (var i = 0; i < params.length; i++)
+				{
+					idx = params[i].indexOf('=');
+					
+					if (idx > 0)
+					{
+						result[params[i].substring(0, idx)] = params[i].substring(idx + 1);
+					}
+				}
+			}
+			
+			return result;
+		})(window.location.href);
+	
+		// Default resources are included in grapheditor resources
+		mxLoadResources = false;
+	</script>
+	<script type="text/javascript" src="js/Init.js"></script>
+	<script type="text/javascript" src="deflate/pako.min.js"></script>
+	<script type="text/javascript" src="deflate/base64.js"></script>
+	<script type="text/javascript" src="jscolor/jscolor.js"></script>
+	<script type="text/javascript" src="sanitizer/sanitizer.min.js"></script>
+	<script type="text/javascript" src="../mxClient.js"></script>
+	<script type="text/javascript" src="js/EditorUi.js"></script>
+	<script type="text/javascript" src="js/Editor.js"></script>
+	<script type="text/javascript" src="js/Sidebar.js"></script>
+	<script type="text/javascript" src="js/Graph.js"></script>
+	<script type="text/javascript" src="js/Format.js"></script>
+	<script type="text/javascript" src="js/Shapes.js"></script>
+	<script type="text/javascript" src="js/Actions.js"></script>
+	<script type="text/javascript" src="js/Menus.js"></script>
+	<script type="text/javascript" src="js/Toolbar.js"></script>
+	<script type="text/javascript" src="js/Dialogs.js"></script>
 </head>
-<body>
-<br/>
-<center>
-<img src="docs/images/mxgraph_logo.gif" alt="mxGraph"/><br/>
-<font size="-1"><i>
-Version 3.9.8 &ndash; 06. July 2018
-</i></font>
-</center>
-<br/>
-<br/>
-<h1>mxGraph 3.9.8</h1>
-<p>
-	mxGraph is a JavaScript diagramming library that enables interactive graph 
-	and charting applications to be quickly created that run natively in any
-	major browser that is supported by its vendor.
-</p>
-<h2>Documentation</h2>
-<p>
-	This documentation is designed for people familiar with JavaScript programming
-	and object-oriented programming concepts. There are many
-	<a href="http://www.google.com/search?q=javascript+tutorials">JavaScript
-	tutorials</a> available on the Web.
-</p>
-<h3>General Information</h3>
-<ul>
-	<li><a href="docs/tutorial.html">Tutorial</a></li>
-	<li><a href="docs/manual.html">User Manual (JavaScript)</a></li>
-	<li><a href="docs/manual_javavis.html">User Manual (Java)</a></li>
-	<li><a href="docs/known-issues.html">Known Issues</a></li>
-</ul>
-<h3>Installation &amp; Examples</h3>
-<ul>
-	<li><a href="php/index.html">PHP</a></li>
-	<li><a href="dotnet/index.html">.NET</a></li>
-	<li><a href="java/index.html">Java</a></li>
-	<li><a href="javascript/index.html">JavaScript</a></li>
-</ul>
-<h3>API Specifications</h3>
-<ul>
-	<li><a href="docs/php-api/index.html">PHP</a></li>
-	<li><a href="dotnet/docs/html/index.html">.NET</a></li>
-	<li><a href="java/docs/index.html">Java</a></li>
-	<li><a href="docs/js-api/index.html">JavaScript</a></li>
-</ul>
-<h2>Support</h2>
-<p>
-	The is an <a href="http://stackoverflow.com/questions/tagged/mxgraph" target="_blank">
-	mxgraph tag on Stack Overflow</a> that we try to keep answered. Please ensure 
-	your questions adhere to the <a href="http://stackoverflow.com/help/on-topic" target="_blank">
-	SO guidelines</a>, otherwise it will be closed.
-</p>
-<h2>License</h2>
-<p>
-	mxGraph is licensed under the  
-	<a href="https://github.com/jgraph/mxgraph/blob/master/LICENSE" target="_blank">
-	Apache License 2.0</a>.
-</p>
-<h2>Requirements</h2>
-<p>
-  	The JavaScript client requires Google Chrome 30 and later, Firefox 31 and later, 
-  	Microsoft Internet Explorer 9.0 and later, Microsoft Edge 20 and later, 
-  	 Safari 6.2 and later, Opera 20 and later, the default Android browser in Android 
-  	version 5.0 and later, or the default iOS browser in iOS 8.0 and later.
-</p>
-<p>
-  	The servers require Java 6.0 or later or .NET 3.5 or later.
-  	Using PHP 5.0 is informally supported. The I/O module for PHP requires libxml.
-	The PHP examples do not support image export.
-</p>
-<h2>Updates</h2>
-<p>
-	For information on new releases, please see the <a href="https://www.jgraph.com/mxchangelog.html" target="_blank">mxGraph Changelog</a>.
-</p>
-<p>
-	There is also a <a href="http://jgraph.us7.list-manage.com/subscribe?u=78de8afbba93a005d81a1bb43&id=f60ca063dd" target="_blank"> very low volume mailing list</a> that only emails in the event of a critical 
-	issue affecting mxGraph.
-<hr size="1">
-&copy; 2006-2017 by JGraph Ltd.
+<body class="geEditor">
+	<script type="text/javascript">
+		// Extends EditorUi to update I/O action states based on availability of backend
+		(function()
+		{
+			var editorUiInit = EditorUi.prototype.init;
+			
+			EditorUi.prototype.init = function()
+			{
+				editorUiInit.apply(this, arguments);
+				this.actions.get('export').setEnabled(false);
+
+				// Updates action states which require a backend
+				if (!Editor.useLocalStorage)
+				{
+					mxUtils.post(OPEN_URL, '', mxUtils.bind(this, function(req)
+					{
+						var enabled = req.getStatus() != 404;
+						this.actions.get('open').setEnabled(enabled || Graph.fileSupport);
+						this.actions.get('import').setEnabled(enabled || Graph.fileSupport);
+						this.actions.get('save').setEnabled(enabled);
+						this.actions.get('saveAs').setEnabled(enabled);
+						this.actions.get('export').setEnabled(enabled);
+					}));
+				}
+			};
+			
+			// Adds required resources (disables loading of fallback properties, this can only
+			// be used if we know that all keys are defined in the language specific file)
+			mxResources.loadDefaultBundle = false;
+			var bundle = mxResources.getDefaultBundle(RESOURCE_BASE, mxLanguage) ||
+				mxResources.getSpecialBundle(RESOURCE_BASE, mxLanguage);
+
+			// Fixes possible asynchronous requests
+			mxUtils.getAll([bundle, STYLE_PATH + '/default.xml'], function(xhr)
+			{
+				// Adds bundle text to resources
+				mxResources.parse(xhr[0].getText());
+				
+				// Configures the default graph theme
+				var themes = new Object();
+				themes[Graph.prototype.defaultThemeName] = xhr[1].getDocumentElement(); 
+				
+				// Main
+				new EditorUi(new Editor(urlParams['chrome'] == '0', themes));
+			}, function()
+			{
+				document.body.innerHTML = '<center style="margin-top:10%;">Error loading resource files. Please check browser console.</center>';
+			});
+		})();
+	</script>
 </body>
 </html>
